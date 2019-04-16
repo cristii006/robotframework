@@ -58,6 +58,7 @@ class _ExecutionContext(object):
     def __init__(self, suite, namespace, output, dry_run=False):
         self.suite = suite
         self.test = None
+        self.local = None
         self.timeouts = set()
         self.namespace = namespace
         self.output = output
@@ -160,6 +161,10 @@ class _ExecutionContext(object):
         if timeout in self.timeouts:
             self.timeouts.remove(timeout)
 
+    def start_local(self, local):
+        self.local = local
+        self.namespace.start_local()
+
     def end_test(self, test):
         self.test = None
         self._remove_timeout(test.timeout)
@@ -168,6 +173,10 @@ class _ExecutionContext(object):
         self.variables.set_suite('${PREV_TEST_STATUS}', test.status)
         self.variables.set_suite('${PREV_TEST_MESSAGE}', test.message)
         self.timeout_occurred = False
+
+    def end_local(self, local):
+        self.local = None
+        self.namespace.end_local()
 
     def start_keyword(self, keyword):
         self._started_keywords += 1

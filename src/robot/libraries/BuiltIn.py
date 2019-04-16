@@ -1426,7 +1426,20 @@ class _Variables(_BuiltInBase):
         name = self._get_var_name(name)
         value = self._get_var_value(name, values)
         self._variables.set_test(name, value)
-        self._log_set_variable(name, value)
+
+    @run_keyword_variant(resolve=0)
+    def set_local_variable(self, name, *values):
+        """Makes a variable available everywhere within the local scope.
+
+        Variables set with this keyword are available everywhere within the
+        local scope of the currently executed test case.
+        TODO ADD MORE DOCUMENTATION
+
+        See `Set Suite Variable` for more information and examples.
+        """
+        name = self._get_var_name(name)
+        value = self._get_var_value(name, values)
+        self._variables.set_local(name, value)
 
     @run_keyword_variant(resolve=0)
     def set_task_variable(self, name, *values):

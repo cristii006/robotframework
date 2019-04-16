@@ -27,10 +27,11 @@ from .logger import LOGGER
 @py2to3
 class Listeners(object):
     _method_names = ('start_suite', 'end_suite', 'start_test', 'end_test',
-                     'start_keyword', 'end_keyword', 'log_message', 'message',
-                     'output_file', 'report_file', 'log_file', 'debug_file',
-                     'xunit_file', 'library_import', 'resource_import',
-                     'variables_import', 'close')
+                     'start_local', 'end_local', 'start_keyword',
+                     'end_keyword', 'log_message', 'message', 'output_file',
+                     'report_file', 'log_file', 'debug_file', 'xunit_file',
+                     'library_import', 'resource_import', 'variables_import',
+                     'close')
 
     def __init__(self, listeners, log_level='INFO'):
         self._is_logged = IsLogged(log_level)
@@ -64,8 +65,8 @@ class Listeners(object):
 
 class LibraryListeners(object):
     _method_names = ('start_suite', 'end_suite', 'start_test', 'end_test',
-                     'start_keyword', 'end_keyword', 'log_message', 'message',
-                     'close')
+                     'start_local', 'end_local', 'start_keyword', 'end_keyword',
+                     'log_message', 'message', 'close')
 
     def __init__(self, log_level='INFO'):
         self._is_logged = IsLogged(log_level)

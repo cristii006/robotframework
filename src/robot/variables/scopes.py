@@ -29,6 +29,7 @@ class VariableScopes(object):
         self._global = GlobalVariables(settings)
         self._suite = None
         self._test = None
+        self._local = None
         self._scopes = [self._global]
         self._variables_set = SetVariables()
 
@@ -54,6 +55,13 @@ class VariableScopes(object):
             if scope is self._test:
                 break
 
+    @property
+    def _scopes_until_local(self):
+        for scope in self._scopes_until_test:
+            yield scope
+            if scope is self._local:
+                break
+
     def start_suite(self):
         self._suite = self._global.copy()
         self._scopes.append(self._suite)
@@ -74,6 +82,16 @@ class VariableScopes(object):
         self._scopes.pop()
         self._test = None
         self._variables_set.end_test()
+
+    def start_local(self):
+        self._local = self._test.copy()
+        self._scopes.append(self._local)
+        self._variables_set.start_local()
+
+    def end_local(self):
+        self._scopes.pop()
+        self._local = None
+        self._variables_set.end_local()
 
     def start_keyword(self):
         kw = self._suite.copy()
@@ -152,6 +170,13 @@ class VariableScopes(object):
         self.current[name] = value
         self._variables_set.set_keyword(name, value)
 
+    def set_local(self, name, value):
+        if self._test is None:
+            raise DataError('Cannot set test variable when no test is started.')
+        for scope in self._scopes_until_local:
+            name, value = self._set_global_suite_or_test(scope, name, value)
+        self._variables_set.set_local(name, value)
+
     def as_dict(self, decoration=True):
         return self.current.as_dict(decoration=decoration)
 
@@ -207,6 +232,7 @@ class SetVariables(object):
     def __init__(self):
         self._suite = None
         self._test = None
+        self._local = None
         self._scopes = []
 
     def start_suite(self):
@@ -228,6 +254,14 @@ class SetVariables(object):
         self._test = None
         self._scopes.pop()
 
+    def start_local(self):
+        self._local = self._scopes[-1].copy()
+        self._scopes.append(self._local)
+
+    def end_local(self):
+        self._local = None
+        self._scopes.pop()
+
     def start_keyword(self):
         self._scopes.append(self._scopes[-1].copy())
 
@@ -246,6 +280,12 @@ class SetVariables(object):
         for scope in reversed(self._scopes):
             scope[name] = value
             if scope is self._test:
+                break
+
+    def set_local(self, name,  value):
+        for scope in reversed(self._scopes):
+            scope[name] = value
+            if scope is self._local:
                 break
 
     def set_keyword(self, name, value):

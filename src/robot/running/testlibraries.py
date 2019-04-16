@@ -116,6 +116,12 @@ class _BaseTestLibrary(object):
     def end_test(self):
         self.scope.end_test()
 
+    def start_local(self):
+        self.scope.start_local()
+
+    def end_local(self):
+        self.scope.end_local()
+
     def _get_version(self, libcode):
         return self._get_attr(libcode, 'ROBOT_LIBRARY_VERSION') \
             or self._get_attr(libcode, '__version__')

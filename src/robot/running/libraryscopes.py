@@ -53,6 +53,12 @@ class GlobalScope(object):
     def end_test(self):
         pass
 
+    def start_local(self):
+        pass
+
+    def end_local(self):
+        pass
+
     def __str__(self):
         return 'global'
 
@@ -92,6 +98,18 @@ class TestCaseScope(TestSuiteScope):
         self._register_listeners()
 
     def end_test(self):
+        self._unregister_listeners(close=True)
+        prev = self._instance_cache.pop()
+        self._reset_instance(prev)
+        self._register_listeners()
+
+    def start_local(self):
+        self._unregister_listeners()
+        prev = self._reset_instance()
+        self._instance_cache.append(prev)
+        self._register_listeners()
+
+    def end_local(self):
         self._unregister_listeners(close=True)
         prev = self._instance_cache.pop()
         self._reset_instance(prev)

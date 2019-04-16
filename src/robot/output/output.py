@@ -59,6 +59,12 @@ class Output(AbstractLogger):
     def end_test(self, test):
         LOGGER.end_test(test)
 
+    def start_local(self, local):
+        LOGGER.start_local(local)
+
+    def end_local(self, local):
+        LOGGER.end_local(local)
+
     def start_keyword(self, kw):
         LOGGER.start_keyword(kw)
 

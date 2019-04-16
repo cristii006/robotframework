@@ -12,6 +12,19 @@ Set Variable
 Set Variable With More Or Less Than One Value
     Check Test Case    ${TESTNAME}
 
+
+Set Local Variable - Scalars
+    Check Test Case    ${TESTNAME}
+
+Set Local Variable - Lists
+    Check Test Case    ${TESTNAME}
+
+Set Local Variable - Dicts
+    Check Test Case    ${TESTNAME}
+
+#Set Local Variables Overrides test variables
+#    Check Test Case    ${TESTNAME}
+
 Set Test Variable - Scalars
     Check Test Case    ${TESTNAME}
 

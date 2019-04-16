@@ -185,6 +185,18 @@ class Namespace(object):
             lib.end_test()
         self._running_test = True
 
+    def start_local(self):
+        self._running_test = True
+        self.variables.start_local()
+        for lib in self.libraries:
+            lib.start_local()
+
+    def end_local(self):
+        self.variables.end_local()
+        for lib in self.libraries:
+            lib.end_local()
+        self._running_test = True
+
     def start_suite(self):
         self.variables.start_suite()
 

@@ -211,6 +211,14 @@ class Logger(AbstractLogger):
         for logger in self.end_loggers:
             logger.end_test(test)
 
+    def start_local(self, local):
+        for logger in self.start_loggers:
+            logger.start_local(local)
+
+    def end_local(self, local):
+        for logger in self.end_loggers:
+            logger.end_local(local)
+
     def start_keyword(self, keyword):
         # TODO: Could _prev_log_message_handlers be used also here?
         self._started_keywords += 1
@@ -242,8 +250,8 @@ class Logger(AbstractLogger):
 
 class LoggerProxy(AbstractLoggerProxy):
     _methods = ('start_suite', 'end_suite', 'start_test', 'end_test',
-                'start_keyword', 'end_keyword', 'message', 'log_message',
-                'imported', 'output_file', 'close')
+                'start_local', 'end_local', 'start_keyword', 'end_keyword',
+                'message', 'log_message', 'imported', 'output_file', 'close')
 
 
 LOGGER = Logger()
