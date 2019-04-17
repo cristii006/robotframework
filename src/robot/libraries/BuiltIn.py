@@ -1432,8 +1432,10 @@ class _Variables(_BuiltInBase):
         """Makes a variable available everywhere within the local scope.
 
         Variables set with this keyword are available everywhere within the
-        local scope of the currently executed test case.
-        TODO ADD MORE DOCUMENTATION
+        local scope of the currently executed test case. For example, if you set a
+        variable in a user keyword, it is available both in the test case level
+        and also in all other user keywords used in the current test. Other
+        test cases will not see variables set with this keyword.
 
         See `Set Suite Variable` for more information and examples.
         """
