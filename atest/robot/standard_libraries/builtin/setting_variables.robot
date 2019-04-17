@@ -22,8 +22,11 @@ Set Local Variable - Lists
 Set Local Variable - Dicts
     Check Test Case    ${TESTNAME}
 
-#Set Local Variables Overrides test variables
-#    Check Test Case    ${TESTNAME}
+Set Local Variables Overrides test variables
+    Check Test Case    ${TESTNAME}
+
+Set Local Variable In Keyword Is Available In Test
+    Check Test Case    ${TESTNAME}
 
 Set Test Variable - Scalars
     Check Test Case    ${TESTNAME}

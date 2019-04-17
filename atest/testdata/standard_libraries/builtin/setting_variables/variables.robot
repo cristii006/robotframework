@@ -71,14 +71,20 @@ Set Local Variable - Dicts
     Set Local Variable    &new    new=dict
     Should Be True    &{new} == {'new': 'dict'}
     Should Be Equal    ${new.new}    dict
-#
-#Set Local Variables Overrides test variables
-#    Should Be Equal    ${scalar}    Hi tellus
-#    Set Test Variable    $scalar    Hello world
-#    Should Be Equal    ${scalar}    Hello world
-#    Set Local Variable    ${scalar}    Moi maailma
-#    Should Be Equal    ${scalar}    Moi maailma
-#
+
+Set Local Variables Overrides test variables
+    Should Be Equal    ${scalar}    Hi tellus
+    Set Test Variable    $scalar    Hello world
+    Should Be Equal    ${scalar}    Hello world
+    Set Local Variable    ${scalar}    Moi maailma
+    Should Be Equal    ${scalar}    Moi maailma
+
+Set Local Variable In Keyword Is Available In Test
+    Variable Should Not Exist    ${new}
+    Setting Local variable
+    Should Be Equal    ${new}    Previously non-existing
+    Should Be Equal    ${scalar}    Moi maailma
+
 Set Test Variable - Scalars
     [Documentation]    FAIL Variable '\${non_existing}' not found.
     Should Be Equal    ${scalar}    Hi tellus
@@ -680,3 +686,9 @@ Dict mutating user keyword 2
 
 Verify @{EMPTY} is still empty
     No Operation    @{EMPTY}
+
+Setting Local variable
+    Set Local Variable    $new    Previously non-existing
+    Should Be Equal    ${new}    Previously non-existing
+    Set Local Variable    ${scalar}    Moi maailma
+    Should Be Equal    ${scalar}    Moi maailma
