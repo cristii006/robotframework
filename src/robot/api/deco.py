@@ -12,6 +12,9 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+import inspect
+import sys
+from robot.api import logger
 
 
 def keyword(name=None, tags=(), types=()):
@@ -61,10 +64,46 @@ def keyword(name=None, tags=(), types=()):
             # ...
     """
     if callable(name):
-        return keyword()(name)
+        class_name = get_class_name(name)
+        if class_name.ROBOT_LIBRARY:
+            if name in get_keywords(class_name):
+                return keyword()(name)
+        else:
+            return keyword()(name)
+
     def decorator(func):
         func.robot_name = name
         func.robot_tags = tags
         func.robot_types = types
         return func
+
     return decorator
+
+
+def library(name=None, scope=None, version=None):
+    # TODO Add documentation and examples
+    if inspect.isclass(name):
+        return library()(name)
+
+    def decorator(class_name):
+        class_name.ROBOT_LIBRARY = True
+        class_name.scope = scope
+        class_name.version = version
+        class_name.accepted_keywords = get_keywords(class_name)
+        return class_name
+
+    return decorator
+
+
+def get_keywords(name):
+    keywords = inspect.getmembers(name, inspect.isfunction)
+    for key in keywords:
+        sourcelines = inspect.getsourcelines(key[1])[0]
+        if not sourcelines[0].strip() == '@keyword':
+            keywords.remove(key)
+    return keywords
+
+
+def get_class_name(meth):
+    # TODO Add a function that will get the class in which a method/function is defined
+    pass
