@@ -471,7 +471,7 @@ __ https://docs.python.org/tutorial/modules.html#importing-from-a-package
 
 Another way to specifying if the methods from a class will become keywords
 is by using the class attribute `ROBOT_AUTO_LIBRARY`. If this class attribute
-is set to be `False` then none of the methods of that class will become
+is set to `False` then none of the methods of that class will become
 keywords anymore.
 
 .. sourcecode:: python
