@@ -469,6 +469,19 @@ For example, the library below implements only keywords
 
 __ https://docs.python.org/tutorial/modules.html#importing-from-a-package
 
+Another way to specifying if the methods from a class will become keywords
+is by using the class attribute `ROBOT_AUTO_LIBRARY`. If this class attribute
+is set to be `False` then none of the methods of that class will become
+keywords anymore.
+
+.. sourcecode:: python
+
+    class MyLibrary:
+        ROBOT_AUTO_LIBRARY = False
+
+        def my_keyword(self, name):
+            return name
+
 Keyword names
 ~~~~~~~~~~~~~
 
