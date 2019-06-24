@@ -2,14 +2,14 @@
 Library  DisablePublicMethods.py
 
 *** Test Cases ***
-Invalid Keyword Due To Public Methods Being Disabled
-    [Documentation]  FAIL  No keyword with name 'Public Method Is Disabled' found.
-    Public Method Is Disabled
+Public Method Is Not Recognized As Keyword
+    [Documentation]  FAIL  No keyword with name 'Public Method Is Not Keyword' found.
+    Public Method Is Not Keyword
 
-Keyword Decorated Method Is Invalid
-    [Documentation]  FAIL  No keyword with name 'Decorated Method Is Invalid Too' found.
-    Decorated Method Is Invalid Too
+Decorated Method Is Not Recognized As Keyword
+    [Documentation]  FAIL  No keyword with name 'Decorated Method Is Not Keyword' found.
+    Decorated Method Is Not Keyword
 
-Private Method Is Not Recognized As Method
-    [Documentation]  FAIL  No keyword with name 'Private_Method_Is_Invalid' found.
-    Private Method Is Invalid
+Private Method Is Not Recognized As Keyword
+    [Documentation]  FAIL  No keyword with name 'Private Method Is Not Keyword' found.
+    Private Method Is Not Keyword
