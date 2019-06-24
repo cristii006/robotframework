@@ -74,3 +74,9 @@ def keyword(name=None, tags=(), types=()):
         return func
 
     return decorator
+
+
+def library():
+    """Decorator to set custom scope and version and enable/disable public
+     methods that will become keywords.
+    """
