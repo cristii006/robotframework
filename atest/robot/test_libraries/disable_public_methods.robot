@@ -3,11 +3,11 @@ Suite Setup       Run Tests    ${EMPTY}    test_libraries/disable_public_methods
 Resource          atest_resource.robot
 
 *** Test Cases ***
-Invalid Keyword Due To Public Methods Being Disabled
+Public Method Is Not Recognized As Keyword
     Check Test Case  ${TESTNAME}
 
-Keyword Decorated Method Is Invalid
+Decorated Method Is Not Recognized As Keyword
     Check Test Case  ${TESTNAME}
 
-Private Method Is Not Recognized As Method
+Private Method Is Not Recognized As Keyword
     Check Test Case  ${TESTNAME}

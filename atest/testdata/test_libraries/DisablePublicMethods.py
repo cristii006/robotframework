@@ -8,12 +8,13 @@ class DisablePublicMethods(object):
     def __init__(self):
         self.invalid = 'This method is not a keyword.'
 
-    def public_method_is_disabled(self):
+    def public_method_is_not_keyword(self):
         print(self.invalid)
 
-    @keyword(name="Decorated Method Is Invalid Too")
-    def keyword_decorated_method_is_invalid_too(self):
+    @keyword(name="Decorated Method Is Not Keyword")
+    def decorated_method(self):
         print(self.invalid)
 
-    def _private_method_is_invalid(self):
+    @keyword
+    def _private_method_is_not_keyword(self):
         print(self.invalid)
