@@ -11,5 +11,5 @@ Keyword Decorated Method Is Invalid
     Decorated Method Is Invalid Too
 
 Private Method Is Not Recognized As Method
-    [Documentation]  FAIL  No keyword with name 'Private_Method_Is_Invalid' found.
+    [Documentation]  FAIL  No keyword with name 'Private Method Is Invalid' found.
     Private Method Is Invalid
