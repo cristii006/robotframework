@@ -67,7 +67,6 @@ def keyword(name=None, tags=(), types=()):
         return keyword()(name)
 
     def decorator(func):
-        a = dir(name)
         func.robot_name = name
         func.robot_tags = tags
         func.robot_types = types
