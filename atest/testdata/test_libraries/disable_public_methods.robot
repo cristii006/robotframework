@@ -13,3 +13,4 @@ Decorated Method Is Not Recognized As Keyword
 Private Method Is Not Recognized As Keyword
     [Documentation]  FAIL  No keyword with name 'Private Method Is Not Keyword' found.
     Private Method Is Not Keyword
+
