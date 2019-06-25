@@ -11,10 +11,13 @@ class DisablePublicMethods(object):
     def public_method_is_not_keyword(self):
         print(self.invalid)
 
-    @keyword(name="Decorated Method Is Not Keyword")
+    @keyword(name="Decorated Method Is Keyword")
     def decorated_method(self):
+        print('Decorated methods are keywords.')
+
+    def _private_method_is_not_keyword(self):
         print(self.invalid)
 
     @keyword
-    def _private_method_is_not_keyword(self):
-        print(self.invalid)
+    def _private_decorated_method_is_keyword(self):
+        print('Decorated private methods are keywords.')

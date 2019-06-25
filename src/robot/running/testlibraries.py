@@ -237,8 +237,7 @@ class _BaseTestLibrary(object):
     def _get_handler_names(self, libcode):
         auto_keywords = getattr(libcode, 'ROBOT_AUTO_KEYWORDS', True)
         if not auto_keywords:
-            return [name for name in dir(libcode)
-                    if self._has_robot_name(name, libcode) or name not in self._get_decorated_method(libcode)]
+            return [name for name in dir(libcode) if self._has_robot_name(name, libcode)]
         return [name for name in dir(libcode)
                 if name[:1] != '_' or self._has_robot_name(name, libcode)]
 
@@ -272,14 +271,6 @@ class _BaseTestLibrary(object):
         if not inspect.isroutine(method):
             raise DataError('Not a method or function')
         return method
-
-    def _get_decorated_method(self, name):
-        decorated_keywords = inspect.getmembers(name, inspect.isroutine)
-        for key in decorated_keywords:
-            sourcelines = inspect.getsourcelines(key[1])[0]
-            if not sourcelines[0].strip() == '@keyword':
-                decorated_keywords.remove(key)
-        return decorated_keywords
 
     def _try_to_create_handler(self, name, method):
         try:

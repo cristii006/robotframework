@@ -11,3 +11,6 @@ Decorated Method Is Not Recognized As Keyword
 
 Private Method Is Not Recognized As Keyword
     Check Test Case  ${TESTNAME}
+
+Private Decorated Method Is Recognized As Keyword
+    Check Test Case  ${TESTNAME}
