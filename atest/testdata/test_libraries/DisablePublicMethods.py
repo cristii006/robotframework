@@ -1,9 +1,8 @@
-from robot.api.deco import keyword
+from robot.api.deco import keyword, library
 
 
+@library(scope='TEST SUITE', version='1.2.3', method_dissabler=False)
 class DisablePublicMethods(object):
-
-    ROBOT_AUTO_KEYWORDS = False
 
     def __init__(self):
         self.invalid = 'This method is not a keyword.'
