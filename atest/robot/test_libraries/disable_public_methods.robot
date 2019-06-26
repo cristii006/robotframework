@@ -6,7 +6,7 @@ Resource          atest_resource.robot
 Public Method Is Not Recognized As Keyword
     Check Test Case  ${TESTNAME}
 
-Decorated Method Is Not Recognized As Keyword
+Decorated Method Is Recognized As Keyword
     Check Test Case  ${TESTNAME}
 
 Private Method Is Not Recognized As Keyword
