@@ -469,8 +469,9 @@ For example, the library below implements only keywords
 
 __ https://docs.python.org/tutorial/modules.html#importing-from-a-package
 
-In order to stop all methods of a class from becoming keywords,
-class attribute `ROBOT_AUTO_LIBRARY` should be set to False.
+In order to stop all public methods of a class that are not decorated with
+`@keyword` decorator from becoming keywords,class attribute `ROBOT_AUTO_LIBRARY`
+should be set to False.
 
 .. sourcecode:: python
 
