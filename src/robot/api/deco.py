@@ -104,8 +104,8 @@ def library(libname=None, scope=None, version=None, method_dissabler=True):
         return library()(libname)
 
     def lib_decorator(func):
-        ROBOT_LIBRARY_SCOPE = scope
-        ROBOT_LIBRARY_VERSION = version
-        ROBOT_AUTO_KEYWORDS = method_dissabler
+        func.ROBOT_LIBRARY_SCOPE = scope
+        func.ROBOT_LIBRARY_VERSION = version
+        func.ROBOT_AUTO_KEYWORDS = method_dissabler
         return func
     return lib_decorator
