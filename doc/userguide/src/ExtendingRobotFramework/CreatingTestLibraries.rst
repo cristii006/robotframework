@@ -264,6 +264,16 @@ Example Java library using the `GLOBAL` scope:
 
 __ `Providing arguments to test libraries`_
 
+Using `library` decorator, library scope can be set with parameter
+`scope`.
+
+.. sourcecode:: python
+
+     @library(scope='TEST SUITE')
+     class MyLibrary:
+        ...
+
+
 Specifying library version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -302,6 +312,16 @@ A Java class using `ROBOT_LIBRARY_VERSION`:
         public void keyword() {
         }
     }
+
+Another way to specify library version is by using `library` decorator, with
+the parameter `version`.
+
+.. sourcecode:: python
+
+     @library(version='1.0.0')
+     class MyLibrary:
+        ...
+
 
 Specifying documentation format
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -469,16 +489,17 @@ For example, the library below implements only keywords
 
 __ https://docs.python.org/tutorial/modules.html#importing-from-a-package
 
-In order to stop all methods of a class from becoming keywords,
-class attribute `ROBOT_AUTO_LIBRARY` should be set to False.
+Another way to avoid methods becoming keywords is to use `@library` class
+decorator and set its parameter `method_disabler` to False.
 
 .. sourcecode:: python
 
+    @library(method_disabler=False)
     class MyLibrary:
-        ROBOT_AUTO_LIBRARY = False
 
-        def my_keyword(self, name):
-            return name
+        def my_keyword(self):
+            print('This method will not become keyword)
+
 
 Keyword names
 ~~~~~~~~~~~~~
